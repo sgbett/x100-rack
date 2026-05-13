@@ -1,32 +1,32 @@
-<h2>Transactions</h2>
+<h2 class="text-2xl font-bold text-gray-900 mb-6">Transactions</h2>
 
-<figure>
-  <table>
-    <thead>
+<div class="overflow-hidden rounded-lg bg-white shadow">
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50">
       <tr>
-        <th>ID</th>
-        <th>txid</th>
-        <th>Inputs</th>
-        <th>Outputs</th>
-        <th>Date</th>
+        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">ID</th>
+        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">txid</th>
+        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Inputs</th>
+        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Outputs</th>
+        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Date</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="divide-y divide-gray-200 bg-white">
       <% if @actions.nil? || @actions.empty? %>
         <tr>
-          <td colspan="5">No transactions yet.</td>
+          <td colspan="5" class="px-6 py-8 text-center text-sm text-gray-500">No transactions yet.</td>
         </tr>
       <% else %>
         <% @actions.each do |action| %>
-          <tr>
-            <td><%= action[:id] %></td>
-            <td><code><%= action[:dtxid] %></code></td>
-            <td><%= action[:input_summary] %></td>
-            <td><%= action[:output_summary] %></td>
-            <td><%= action[:created_at] %></td>
+          <tr class="hover:bg-gray-50">
+            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-900"><%= action[:id] %></td>
+            <td class="whitespace-nowrap px-6 py-4 font-mono text-sm text-gray-500"><%= action[:dtxid] %></td>
+            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500"><%= action[:input_summary] %></td>
+            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500"><%= action[:output_summary] %></td>
+            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500"><%= action[:created_at] %></td>
           </tr>
         <% end %>
       <% end %>
     </tbody>
   </table>
-</figure>
+</div>

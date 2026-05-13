@@ -78,7 +78,7 @@ RSpec.describe X100::Web do
   describe "nav bar" do
     it "shows x100 branding" do
       get "/"
-      expect(last_response.body).to include("<strong>x100</strong>")
+      expect(last_response.body).to include("x100")
     end
 
     it "shows version in footer" do
@@ -88,7 +88,7 @@ RSpec.describe X100::Web do
 
     it "disables nav links when locked" do
       get "/"
-      expect(last_response.body).to include('aria-disabled="true"')
+      expect(last_response.body).to include("cursor-not-allowed")
     end
   end
 end

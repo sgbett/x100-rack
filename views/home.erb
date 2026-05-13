@@ -1,33 +1,41 @@
 <% if session["show_wif"] %>
-  <article>
-    <header><h3>Wallet Created — Save Your Recovery Key</h3></header>
-    <p>This is your private key (WIF). Write it down and store it securely. It will not be shown again.</p>
-    <pre><code><%= session.delete("show_wif") %></code></pre>
-    <p><strong>If you lose this key and your password, your funds are unrecoverable.</strong></p>
-  </article>
+  <div class="mb-8 rounded-lg border border-amber-300 bg-amber-50 p-6">
+    <h3 class="text-lg font-semibold text-amber-800">Wallet Created — Save Your Recovery Key</h3>
+    <p class="mt-2 text-sm text-amber-700">This is your private key (WIF). Write it down and store it securely. It will not be shown again.</p>
+    <pre class="mt-4 rounded-md bg-gray-900 p-4 text-sm text-green-400 overflow-x-auto"><code><%= session.delete("show_wif") %></code></pre>
+    <p class="mt-4 text-sm font-semibold text-red-600">If you lose this key and your password, your funds are unrecoverable.</p>
+  </div>
 <% end %>
 
 <% if unlocked? %>
-  <hgroup>
-    <h2>Wallet</h2>
-    <p><%= wallet_manager.identity_key %></p>
-  </hgroup>
+  <div class="mb-6">
+    <h2 class="text-2xl font-bold text-gray-900">Wallet</h2>
+    <p class="mt-1 font-mono text-sm text-gray-500"><%= wallet_manager.identity_key %></p>
+  </div>
 
-  <article>
-    <header><h3>Balance</h3></header>
-    <p><strong><%= wallet_manager.balance %> sats</strong></p>
-  </article>
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <div class="rounded-lg bg-white p-6 shadow">
+      <h3 class="text-sm font-medium text-gray-500">Balance</h3>
+      <p class="mt-2 text-3xl font-semibold text-gray-900"><%= wallet_manager.balance %> <span class="text-lg text-gray-500">sats</span></p>
+    </div>
 
-  <article>
-    <header><h3>Send</h3></header>
-    <form method="post" action="<%= prefix %>/send">
-      <label for="recipient">Identity Key</label>
-      <input type="text" id="recipient" name="recipient" placeholder="Recipient identity key (hex)" required>
-      <label for="amount">Amount (sats)</label>
-      <input type="number" id="amount" name="amount" min="1" placeholder="Amount in satoshis" required>
-      <button type="submit">Send</button>
-    </form>
-  </article>
+    <div class="rounded-lg bg-white p-6 shadow">
+      <h3 class="text-sm font-medium text-gray-500 mb-4">Send</h3>
+      <form method="post" action="<%= prefix %>/send" class="space-y-4">
+        <div>
+          <label for="recipient" class="block text-sm font-medium text-gray-700">Identity Key</label>
+          <input type="text" id="recipient" name="recipient" placeholder="Recipient identity key (hex)" required
+                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        </div>
+        <div>
+          <label for="amount" class="block text-sm font-medium text-gray-700">Amount (sats)</label>
+          <input type="number" id="amount" name="amount" min="1" placeholder="Amount in satoshis" required
+                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        </div>
+        <button type="submit" class="w-full rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Send</button>
+      </form>
+    </div>
+  </div>
 
 <% elsif wallet_manager.first_run? %>
   <%= render("_setup") %>

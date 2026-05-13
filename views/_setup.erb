@@ -1,11 +1,19 @@
-<article>
-  <header><h3>Create Wallet</h3></header>
-  <p>No wallet found. Set a password to create one. Your private key will be shown once after creation.</p>
-  <form method="post" action="<%= prefix %>/setup">
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
-    <label for="password_confirm">Confirm Password</label>
-    <input type="password" id="password_confirm" name="password_confirm" required>
-    <button type="submit">Create Wallet</button>
-  </form>
-</article>
+<div class="mx-auto max-w-md">
+  <div class="rounded-lg bg-white p-8 shadow">
+    <h3 class="text-lg font-semibold text-gray-900">Create Wallet</h3>
+    <p class="mt-2 text-sm text-gray-600">No wallet found. Set a password to create one. Your private key will be shown once after creation.</p>
+    <form method="post" action="<%= prefix %>/setup" class="mt-6 space-y-4">
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" name="password" required
+               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+      </div>
+      <div>
+        <label for="password_confirm" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+        <input type="password" id="password_confirm" name="password_confirm" required
+               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+      </div>
+      <button type="submit" class="w-full rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create Wallet</button>
+    </form>
+  </div>
+</div>
