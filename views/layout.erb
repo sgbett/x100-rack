@@ -16,12 +16,12 @@
           <div class="ml-10 flex items-baseline space-x-4">
             <a href="<%= prefix %>/" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700">Home</a>
             <% if unlocked? %>
-              <a href="<%= prefix %>/legacy" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Legacy Payment</a>
               <a href="<%= prefix %>/actions" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Transactions</a>
+              <a href="<%= prefix %>/legacy" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Legacy Payment</a>
               <a href="<%= prefix %>/settings" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Settings</a>
             <% else %>
-              <span class="rounded-md px-3 py-2 text-sm font-medium text-gray-500 cursor-not-allowed">Legacy Payment</span>
               <span class="rounded-md px-3 py-2 text-sm font-medium text-gray-500 cursor-not-allowed">Transactions</span>
+              <span class="rounded-md px-3 py-2 text-sm font-medium text-gray-500 cursor-not-allowed">Legacy Payment</span>
               <span class="rounded-md px-3 py-2 text-sm font-medium text-gray-500 cursor-not-allowed">Settings</span>
             <% end %>
           </div>
