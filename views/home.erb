@@ -30,9 +30,9 @@
   </article>
 
 <% elsif wallet_manager.first_run? %>
-  <%== render("_setup") %>
+  <%= render("_setup") %>
 
 <% else %>
-  <%== render("_unlock") %>
+  <%= render("_unlock") %>
 
 <% end %>
