@@ -8,14 +8,13 @@
 <% end %>
 
 <% if unlocked? %>
-  <div class="mb-6">
-    <h2 class="text-2xl font-bold text-gray-900">Wallet</h2>
-    <p class="mt-1 font-mono text-sm text-gray-500"><%= wallet_manager.identity_key %></p>
-  </div>
+  <h2 class="text-2xl font-bold text-gray-900 mb-6">Wallet</h2>
 
   <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
     <div class="rounded-lg bg-white p-6 shadow">
-      <h3 class="text-sm font-medium text-gray-500">Balance</h3>
+      <h3 class="text-sm font-medium text-gray-500">Identity Key</h3>
+      <p class="mt-2 font-mono text-sm text-gray-900 break-all"><%= wallet_manager.identity_key %></p>
+      <h3 class="text-sm font-medium text-gray-500 mt-4">Balance</h3>
       <p class="mt-2 text-3xl font-semibold text-gray-900"><%= wallet_manager.balance %> <span class="text-lg text-gray-500">sats</span></p>
     </div>
 

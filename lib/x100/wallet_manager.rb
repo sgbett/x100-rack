@@ -18,7 +18,7 @@ module X100
     PBKDF2_ITERATIONS = 100_000
     CIPHER = "aes-256-gcm"
 
-    attr_reader :storage_path, :identity_key
+    attr_reader :storage_path, :identity_key, :root_address
 
     def initialize(storage_path: File.expand_path("~/.x100"), logger: nil)
       @storage_path = storage_path
@@ -26,6 +26,7 @@ module X100
       @engine = nil
       @utxo_pool = nil
       @identity_key = nil
+      @root_address = nil
       @wif = nil
       @mutex = Mutex.new
     end
@@ -69,6 +70,7 @@ module X100
         @engine = nil
         @utxo_pool = nil
         @identity_key = nil
+        @root_address = nil
         @wif = nil
       end
     end
@@ -100,7 +102,9 @@ module X100
         require "bsv-sdk"
         @wif = wif
         private_key = BSV::Primitives::PrivateKey.from_wif(wif)
-        @identity_key = private_key.public_key.to_hex
+        public_key = private_key.public_key
+        @identity_key = public_key.to_hex
+        @root_address = public_key.address
       end
     end
 
