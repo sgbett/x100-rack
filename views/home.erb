@@ -1,0 +1,38 @@
+<% if session["show_wif"] %>
+  <article>
+    <header><h3>Wallet Created — Save Your Recovery Key</h3></header>
+    <p>This is your private key (WIF). Write it down and store it securely. It will not be shown again.</p>
+    <pre><code><%= session.delete("show_wif") %></code></pre>
+    <p><strong>If you lose this key and your password, your funds are unrecoverable.</strong></p>
+  </article>
+<% end %>
+
+<% if unlocked? %>
+  <hgroup>
+    <h2>Wallet</h2>
+    <p><%= wallet_manager.identity_key %></p>
+  </hgroup>
+
+  <article>
+    <header><h3>Balance</h3></header>
+    <p><strong><%= wallet_manager.balance %> sats</strong></p>
+  </article>
+
+  <article>
+    <header><h3>Send</h3></header>
+    <form method="post" action="/send">
+      <label for="recipient">Identity Key</label>
+      <input type="text" id="recipient" name="recipient" placeholder="Recipient identity key (hex)" required>
+      <label for="amount">Amount (sats)</label>
+      <input type="number" id="amount" name="amount" min="1" placeholder="Amount in satoshis" required>
+      <button type="submit">Send</button>
+    </form>
+  </article>
+
+<% elsif wallet_manager.first_run? %>
+  <%== render("_setup") %>
+
+<% else %>
+  <%== render("_unlock") %>
+
+<% end %>

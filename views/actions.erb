@@ -1,0 +1,32 @@
+<h2>Transactions</h2>
+
+<figure>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>txid</th>
+        <th>Inputs</th>
+        <th>Outputs</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @actions.nil? || @actions.empty? %>
+        <tr>
+          <td colspan="5">No transactions yet.</td>
+        </tr>
+      <% else %>
+        <% @actions.each do |action| %>
+          <tr>
+            <td><%= action[:id] %></td>
+            <td><code><%= action[:dtxid] %></code></td>
+            <td><%= action[:input_summary] %></td>
+            <td><%= action[:output_summary] %></td>
+            <td><%= action[:created_at] %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</figure>

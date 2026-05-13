@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>x100 — BSV Wallet</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+  <style>
+    nav a[aria-disabled="true"] { opacity: 0.4; pointer-events: none; }
+    .flash-error { color: var(--pico-del-color); margin-bottom: 1em; }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <nav>
+      <ul>
+        <li><strong>x100</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/legacy"<%= ' aria-disabled="true"' unless unlocked? %>>Legacy Payment</a></li>
+        <li><a href="/actions"<%= ' aria-disabled="true"' unless unlocked? %>>Transactions</a></li>
+        <li><a href="/settings"<%= ' aria-disabled="true"' unless unlocked? %>>Settings</a></li>
+        <% if unlocked? %>
+          <li>
+            <form method="post" action="/lock" style="margin: 0;">
+              <button type="submit" class="outline secondary" style="margin: 0; padding: 0.25em 0.75em;">Lock</button>
+            </form>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <% if session["flash_error"] %>
+      <p class="flash-error"><%= session.delete("flash_error") %></p>
+    <% end %>
+    <%= yield %>
+  </main>
+
+  <footer class="container">
+    <small>x100-rack v<%= X100::VERSION %></small>
+  </footer>
+</body>
+</html>
