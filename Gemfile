@@ -4,8 +4,8 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "rack-test", "~> 2.0"
 gem "puma", "~> 6.0", require: false
+gem "rack-test", "~> 2.0"
 gem "rackup", require: false
 gem "rake", "~> 13.0"
 gem "rspec", "~> 3.0"

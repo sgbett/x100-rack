@@ -17,6 +17,7 @@ module X100
            layout: "layout"
     plugin :sessions,
            secret: ENV.fetch("X100_SESSION_SECRET") { SecureRandom.hex(32) }
+    plugin :slash_path_empty
 
     include Auth
 
