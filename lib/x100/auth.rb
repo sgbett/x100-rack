@@ -20,7 +20,7 @@ module X100
       unlocked_at = session["unlocked_at"]
       return false unless unlocked_at
 
-      if Time.now.to_i - unlocked_at > session_timeout
+      if Time.now.to_i - unlocked_at >= session_timeout
         auto_lock!
         return false
       end
