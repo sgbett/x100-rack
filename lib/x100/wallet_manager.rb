@@ -3,6 +3,7 @@
 require "openssl"
 require "json"
 require "fileutils"
+require "logger"
 
 module X100
   # Manages the wallet engine lifecycle: setup, unlock, lock.
@@ -19,8 +20,9 @@ module X100
 
     attr_reader :storage_path, :identity_key
 
-    def initialize(storage_path: File.expand_path("~/.x100"))
+    def initialize(storage_path: File.expand_path("~/.x100"), logger: nil)
       @storage_path = storage_path
+      @logger = logger || Logger.new($stderr, level: Logger::INFO)
       @engine = nil
       @utxo_pool = nil
       @identity_key = nil
@@ -110,6 +112,8 @@ module X100
         require "sequel"
         require "bsv-wallet"
         require "bsv-wallet-postgres"
+
+        BSV.logger ||= @logger
 
         private_key = BSV::Primitives::PrivateKey.from_wif(@wif)
         key_deriver = BSV::Wallet::KeyDeriver.new(private_key: private_key)

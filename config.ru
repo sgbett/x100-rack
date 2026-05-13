@@ -3,7 +3,8 @@
 require_relative "lib/x100"
 
 storage_path = ENV.fetch("X100_STORAGE_PATH") { File.expand_path("~/.x100") }
-wallet_mgr = X100::WalletManager.new(storage_path: storage_path)
+logger = Logger.new($stdout, level: Logger::INFO)
+wallet_mgr = X100::WalletManager.new(storage_path: storage_path, logger: logger)
 app = X100::Web.create(wallet_manager: wallet_mgr)
 
 # Rack::URLMap sets PATH_INFO to "" for exact prefix matches (no trailing

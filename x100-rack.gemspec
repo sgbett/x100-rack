@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "bsv-wallet", ">= 0.100.0"
+  spec.add_dependency "logger", "~> 1.0"
   spec.add_dependency "bsv-wallet-postgres", ">= 0.100.0"
   spec.add_dependency "erubi", "~> 1.0"
   spec.add_dependency "rack", "~> 3.0"
