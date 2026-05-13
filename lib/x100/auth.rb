@@ -31,7 +31,7 @@ module X100
     def require_unlocked!
       return if unlocked?
 
-      request.redirect "/"
+      request.redirect "#{prefix}/"
     end
 
     def touch_session!

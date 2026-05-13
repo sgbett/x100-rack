@@ -66,7 +66,7 @@ module X100
         rescue RuntimeError => e
           session["flash_error"] = e.message
         end
-        r.redirect "/"
+        r.redirect "#{prefix}/"
       end
 
       r.post "setup" do
@@ -75,7 +75,7 @@ module X100
 
         if password.empty? || password != password_confirm
           session["flash_error"] = "Passwords do not match"
-          r.redirect "/"
+          r.redirect "#{prefix}/"
         end
 
         begin
@@ -85,13 +85,13 @@ module X100
         rescue RuntimeError => e
           session["flash_error"] = e.message
         end
-        r.redirect "/"
+        r.redirect "#{prefix}/"
       end
 
       r.post "lock" do
         wallet_manager.lock!
         end_session!
-        r.redirect "/"
+        r.redirect "#{prefix}/"
       end
     end
   end
