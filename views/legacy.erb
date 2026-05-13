@@ -2,7 +2,7 @@
 
 <article>
   <header><h3>Send</h3></header>
-  <form method="post" action="/legacy/send">
+  <form method="post" action="<%= prefix %>/legacy/send">
     <label for="address">Address</label>
     <input type="text" id="address" name="address" placeholder="BSV address (1... or 3...)" required>
     <label for="amount">Amount (sats)</label>

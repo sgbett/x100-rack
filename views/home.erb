@@ -20,7 +20,7 @@
 
   <article>
     <header><h3>Send</h3></header>
-    <form method="post" action="/send">
+    <form method="post" action="<%= prefix %>/send">
       <label for="recipient">Identity Key</label>
       <input type="text" id="recipient" name="recipient" placeholder="Recipient identity key (hex)" required>
       <label for="amount">Amount (sats)</label>

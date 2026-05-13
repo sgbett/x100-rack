@@ -2,7 +2,7 @@
 
 <article>
   <header><h3>Session Timeout</h3></header>
-  <form method="post" action="/settings">
+  <form method="post" action="<%= prefix %>/settings">
     <label for="timeout">Auto-lock after (minutes)</label>
     <input type="number" id="timeout" name="timeout" min="1" max="1440"
            value="<%= session_timeout / 60 %>">

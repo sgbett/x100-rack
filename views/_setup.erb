@@ -1,7 +1,7 @@
 <article>
   <header><h3>Create Wallet</h3></header>
   <p>No wallet found. Set a password to create one. Your private key will be shown once after creation.</p>
-  <form method="post" action="/setup">
+  <form method="post" action="<%= prefix %>/setup">
     <label for="password">Password</label>
     <input type="password" id="password" name="password" required>
     <label for="password_confirm">Confirm Password</label>

@@ -18,13 +18,13 @@
         <li><strong>x100</strong></li>
       </ul>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/legacy"<%= ' aria-disabled="true"' unless unlocked? %>>Legacy Payment</a></li>
-        <li><a href="/actions"<%= ' aria-disabled="true"' unless unlocked? %>>Transactions</a></li>
-        <li><a href="/settings"<%= ' aria-disabled="true"' unless unlocked? %>>Settings</a></li>
+        <li><a href="<%= prefix %>/">Home</a></li>
+        <li><a href="<%= prefix %>/legacy"<%= ' aria-disabled="true"' unless unlocked? %>>Legacy Payment</a></li>
+        <li><a href="<%= prefix %>/actions"<%= ' aria-disabled="true"' unless unlocked? %>>Transactions</a></li>
+        <li><a href="<%= prefix %>/settings"<%= ' aria-disabled="true"' unless unlocked? %>>Settings</a></li>
         <% if unlocked? %>
           <li>
-            <form method="post" action="/lock" style="margin: 0;">
+            <form method="post" action="<%= prefix %>/lock" style="margin: 0;">
               <button type="submit" class="outline secondary" style="margin: 0; padding: 0.25em 0.75em;">Lock</button>
             </form>
           </li>

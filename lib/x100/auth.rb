@@ -50,6 +50,12 @@ module X100
       opts[:wallet_manager]
     end
 
+    # Returns the mount prefix (e.g. "/x100") so templates can build
+    # correct URLs regardless of where the app is mounted.
+    def prefix
+      request.script_name
+    end
+
     private
 
     def auto_lock!
