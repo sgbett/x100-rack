@@ -36,6 +36,12 @@ RSpec.describe X100::WalletManager do
       expect(manager).to be_unlocked
     end
 
+    it "sets identity_key and root_address" do
+      manager.setup!(password: "testpass")
+      expect(manager.identity_key).to match(/\A[0-9a-f]{66}\z/)
+      expect(manager.root_address).to match(/\A1[a-km-zA-HJ-NP-Z1-9]{25,34}\z/)
+    end
+
     it "raises if wallet already exists" do
       manager.setup!(password: "testpass")
       manager.lock!

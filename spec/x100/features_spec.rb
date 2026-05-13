@@ -111,6 +111,37 @@ RSpec.describe "Feature paths", type: :feature do
     end
   end
 
+  describe "page content" do
+    before { create_wallet! }
+
+    it "home shows labeled identity key and balance" do
+      get "/"
+      expect(last_response.body).to include("Identity Key")
+      expect(last_response.body).to include(wallet_manager.identity_key)
+      expect(last_response.body).to include("Balance")
+    end
+
+    it "legacy shows send form and receive panel with root address" do
+      get "/legacy"
+      expect(last_response.body).to include("Send")
+      expect(last_response.body).to include("Receive")
+      expect(last_response.body).to include("Root Address")
+      expect(last_response.body).to include(wallet_manager.root_address)
+    end
+
+    it "actions shows transaction table" do
+      get "/actions"
+      expect(last_response.body).to include("txid")
+      expect(last_response.body).to include("No transactions yet")
+    end
+
+    it "settings shows session timeout form" do
+      get "/settings"
+      expect(last_response.body).to include("Session Timeout")
+      expect(last_response.body).to include("Auto-lock after")
+    end
+  end
+
   describe "session timeout" do
     let(:app) { X100::Web.create(wallet_manager: wallet_manager, session_timeout: 2) }
 
