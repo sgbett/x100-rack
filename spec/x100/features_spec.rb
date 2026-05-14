@@ -121,6 +121,14 @@ RSpec.describe "Feature paths", type: :feature do
       expect(last_response.body).to include("Balance")
     end
 
+    it "home has send and receive tabs" do
+      get "/"
+      body = last_response.body
+      expect(body).to include('data-tab="send"')
+      expect(body).to include('data-tab="receive"')
+      expect(body).to include("Generate New Address")
+    end
+
     it "legacy shows send form and receive panel with root address" do
       get "/legacy"
       expect(last_response.body).to include("Send")
